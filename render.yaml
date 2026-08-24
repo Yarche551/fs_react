@@ -1,0 +1,46 @@
+# Render Blueprint: backend (Node) + frontend (статика) в одном репозитории.
+# Импорт: Render Dashboard → New → Blueprint → выбрать этот репозиторий.
+services:
+  # ---------- API ----------
+  - type: web
+    name: freelance-studio-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Строка подключения к MongoDB Atlas — задаётся вручную в дашборде
+      - key: DB_URL
+        sync: false
+      - key: DB_NAME
+        value: freelancers
+      # Секрет для JWT генерируется Render-ом один раз
+      - key: SECRET
+        generateValue: true
+      # Домен статики (заполнить после первого деплоя фронтенда)
+      - key: CORS_ORIGIN
+        sync: false
+
+  # ---------- Frontend (Vite build → статика) ----------
+  - type: web
+    name: freelance-studio-web
+    runtime: static
+    rootDir: frontend
+    # --ignore-scripts обязателен: admin-lte тянет summernote с husky-скриптом,
+    # который падает на CI (husky: command not found)
+    buildCommand: npm ci --ignore-scripts && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # URL API-сервиса, подставляется в бандл на этапе сборки
+      - key: VITE_API_HOST
+        sync: false
+    routes:
+      # SPA: любой путь отдаёт index.html, иначе прямой заход на /orders вернёт 404
+      - type: rewrite
+        source: /*
+        destination: /index.html

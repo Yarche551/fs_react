@@ -1,0 +1,32 @@
+@use 'freelancers';
+@use 'orders';
+@use 'calendar';
+
+.sidebar {
+    .image i.fa {
+        color: #fff;
+        font-size: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info span {
+        font-weight: 500;
+    }
+}
+
+.main-header .navbar-nav .nav-link {
+    border: 0;
+    background: transparent;
+}
+
+.data-table {
+    .page-link {
+        cursor: pointer;
+    }
+}
+
+.error-page {
+    margin: 0 auto;
+}

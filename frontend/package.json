@@ -1,0 +1,38 @@
+{
+  "name": "freelance-studio-frontend",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Freelance Studio — React + TypeScript + Redux Toolkit",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@reduxjs/toolkit": "^2.12.0",
+    "admin-lte": "3.2",
+    "axios": "^1.13.4",
+    "date-fns": "^4.1.0",
+    "icheck-bootstrap": "^3.0.1",
+    "react": "^19.2.0",
+    "react-datepicker": "^9.1.0",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.9.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "sass": "^1.97.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

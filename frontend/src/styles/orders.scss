@@ -1,0 +1,40 @@
+.orders {
+    .order-tools {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+
+        a,
+        button {
+            border: 0;
+            background: transparent;
+            line-height: 1;
+        }
+    }
+}
+
+.order {
+    .profile-user-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .info-box .info-box-icon {
+        color: #fff;
+    }
+}
+
+.order-form {
+    .react-datepicker {
+        border: 0;
+        border-radius: 6px;
+        font-size: 0.85rem;
+    }
+
+    .react-datepicker__month-container {
+        background-color: #fff;
+        border-radius: 6px;
+    }
+}

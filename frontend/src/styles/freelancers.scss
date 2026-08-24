@@ -1,0 +1,35 @@
+.freelancers {
+    .freelancer-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    .freelancer-tools {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+
+        a,
+        button {
+            border: 0;
+            background: transparent;
+            line-height: 1;
+        }
+    }
+}
+
+.freelancer,
+.freelancer-edit {
+    .box-profile .level {
+        font-size: 20px;
+    }
+
+    .profile-user-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+}

@@ -1,0 +1,79 @@
+.orders-calendar {
+    padding: 12px;
+
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        gap: 10px;
+    }
+
+    &__title {
+        text-transform: capitalize;
+        font-size: 1.25rem;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        border-left: 1px solid #dee2e6;
+        border-top: 1px solid #dee2e6;
+
+        &--head {
+            border-bottom: 0;
+        }
+    }
+
+    &__weekday {
+        padding: 6px 4px;
+        text-align: center;
+        font-weight: 600;
+        background-color: #f8f9fa;
+        border-right: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    &__day {
+        min-height: 110px;
+        padding: 4px;
+        border-right: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+        background-color: #fff;
+
+        &--muted {
+            background-color: #fafafa;
+
+            .orders-calendar__day-number {
+                color: #adb5bd;
+            }
+        }
+
+        &--today {
+            background-color: #fcf8e3;
+        }
+    }
+
+    &__day-number {
+        text-align: right;
+        font-size: 0.85rem;
+        color: #495057;
+        margin-bottom: 4px;
+    }
+
+    &__events {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    &__event {
+        color: #fff;
+        font-size: 0.72rem;
+        line-height: 1.2;
+        padding: 3px 4px;
+        border-radius: 3px;
+        white-space: normal;
+        word-break: break-word;
+    }
+}

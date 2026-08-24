@@ -1,0 +1,23 @@
+# зависимости
+node_modules/
+
+# сборка
+frontend/dist/
+dist/
+
+# переменные окружения (в репозиторий не попадают, см. .env.example)
+.env
+.env.local
+.env.*.local
+
+# редакторы / ОС
+.idea/
+.vscode/
+.DS_Store
+
+# логи
+*.log
+npm-debug.log*
+
+# кэш инкрементальной сборки TypeScript
+*.tsbuildinfo
