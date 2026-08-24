@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { createOrder } from '@/features/orders/ordersSlice';
 import { fetchFreelancers } from '@/features/freelancers/freelancersSlice';
@@ -49,6 +49,17 @@ export function OrderCreatePage() {
 
                     {listLoading ? (
                         <Loader />
+                    ) : freelancers.length === 0 ? (
+                        <div className="callout callout-warning">
+                            <h5>Нет ни одного фрилансера</h5>
+                            <p className="mb-2">
+                                Заказ создаётся на конкретного исполнителя, поэтому сначала нужно
+                                добавить фрилансера.
+                            </p>
+                            <Link to="/freelancers/create" className="btn btn-primary">
+                                <i className="fas fa-plus" /> Создать фрилансера
+                            </Link>
+                        </div>
                     ) : (
                         <OrderForm
                             key={freelancers.length}
