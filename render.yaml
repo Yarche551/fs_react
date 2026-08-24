@@ -1,9 +1,14 @@
 # Render Blueprint: backend (Node) + frontend (статика) в одном репозитории.
-# Импорт: Render Dashboard → New → Blueprint → выбрать этот репозиторий.
+# Импорт: Render Dashboard → New → Blueprint → выбрать этот репозиторий (ветка master).
+#
+# Имена сервисов подобраны свободными, поэтому адреса предсказуемы:
+#   API   → https://fs-react-api.onrender.com
+#   Сайт  → https://fs-react-web.onrender.com
+# Они же прописаны ниже в CORS_ORIGIN и VITE_API_HOST — вручную вводить нужно только DB_URL.
 services:
   # ---------- API ----------
   - type: web
-    name: freelance-studio-api
+    name: fs-react-api
     runtime: node
     plan: free
     rootDir: backend
@@ -12,7 +17,7 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
-      # Строка подключения к MongoDB Atlas — задаётся вручную в дашборде
+      # Строка подключения к MongoDB Atlas — вводится в дашборде при деплое
       - key: DB_URL
         sync: false
       - key: DB_NAME
@@ -20,13 +25,13 @@ services:
       # Секрет для JWT генерируется Render-ом один раз
       - key: SECRET
         generateValue: true
-      # Домен статики (заполнить после первого деплоя фронтенда)
+      # Домен статики: с него разрешены запросы к API
       - key: CORS_ORIGIN
-        sync: false
+        value: https://fs-react-web.onrender.com
 
   # ---------- Frontend (Vite build → статика) ----------
   - type: web
-    name: freelance-studio-web
+    name: fs-react-web
     runtime: static
     rootDir: frontend
     # --ignore-scripts обязателен: admin-lte тянет summernote с husky-скриптом,
@@ -36,9 +41,9 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
-      # URL API-сервиса, подставляется в бандл на этапе сборки
+      # Адрес API вшивается в бандл на этапе сборки
       - key: VITE_API_HOST
-        sync: false
+        value: https://fs-react-api.onrender.com
     routes:
       # SPA: любой путь отдаёт index.html, иначе прямой заход на /orders вернёт 404
       - type: rewrite
