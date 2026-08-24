@@ -12,6 +12,18 @@ const UserModel = require("./src/models/user.model");
 const JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt;
 
+// Страховка от падения процесса: в контроллерах есть async-обработчики без try/catch,
+// а Express 4 их ошибки не перехватывает. Без этого любая заминка базы во время
+// запроса убивает сервер целиком.
+process.on("unhandledRejection", (reason) => {
+    console.log("Unhandled rejection:", reason);
+});
+
+process.on("uncaughtException", (error) => {
+    console.log("Uncaught exception:", error);
+    process.exit(1);
+});
+
 MongoDBConnection.getConnection((error, connection) => {
     if (error || !connection) {
         console.log('Db connection error', error);
